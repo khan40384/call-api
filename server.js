@@ -22,7 +22,7 @@ http.createServer((req,res) =>{
 		});
 	}
 
-   function(){
+   const callApi = () =>{
 	https.get(`https://api.sciener.cn${req.url}`,(resp)=>{
 		let data='';
 		resp.on('data',(chunk)=>{
