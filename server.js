@@ -1,8 +1,8 @@
-
-//const apiCallFromRequest = require('./Request');
-//const apiCallFromNode = require('./NodejsCall');
+const apiCallFromRequest = require('./Request');
+const apiCallFromNode = require('./NodejsCall');
 
 const http = require('http');
+const https = require('https');
 
 const port = process.env.PORT || 3000;
 
@@ -21,22 +21,40 @@ http.createServer((req,res) =>{
             res.end();
 		});
 	}*/
-	
-   const callApi = () =>{
+	 var clientId = req.url.clientId;
+	 var clientSecret = req.url.clientSecret;
+	 var startDate = req.url.startDate;
+	 var endDate = req.url.endDate;
+	 var pageNo = req.url.pageNo;
+	 var pageSize = req.url.pageSize;
+	 var date = req.url.date;
+     console.log(clientId);
+     console.log(clientSecret);
+     console.log(startDate);
+     console.log(endDate);
+     console.log(pageNo);
+     console.log(pageSize);
+     console.log(date);
+     console.log(req.url);
+
+   
 	https.get(`https://api.sciener.cn${req.url}`,(resp)=>{
 		let data='';
 		resp.on('data',(chunk)=>{
 			data += chunk;
 			console.log(data);
-			res.write(data)
+			res.write(data);
+			res.end();
 		});
 		resp.on('end',()=>{
-         callback(data);
+        
 		});
 	}).on("error",(err)=>{
 		console.log("error:" + err.message);
+		res.write(err.message);
+		res.end();
 	});
-}
+
 
 }).listen(port);
 
@@ -44,6 +62,4 @@ http.createServer((req,res) =>{
 
 console.log(`Listening on port ${port}...`);
 
-
-
-
+//https://api.sciener.cn/v3/user/list?clientId=${clientId}&clientSecret=${clientSecret}&startDate=${startDate}&endDate=${endDate}&pageNo=${pageNo}&pageSize=${pageSize}&date=${date}
