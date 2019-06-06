@@ -27,18 +27,19 @@ var params=function(req){
 
 req.params=params(req);
 
+
 console.log(req.params.username);
 console.log(req.params.grant_type);
   if(req.method==='POST'){
 	
 	htts.post(`https://api.sciener.cn${req.url}`,{
-		client_id: 'req.params.client_id',
-		client_secret: 'req.params.client_secret',
-		grant_type: 'req.params.grant_type',
+		client_id: '4e37a73f60064861a7b107b776b23fae',
+		client_secret: '422c5e305e671499f1329c7be9c5ef28',
+		grant_type: 'password',
 
-		username: 'req.params.username', 
-		password: 'req.params.password',
-		redirect_uri: 'req.params.redirect_uri'
+		username: '+919560508945', 
+		password: 'a6c54750414a33f0bd9b99d12cb74eda',
+		redirect_uri: 'smartlock.co.in'
 	}, function(resp){
 	resp.setEncoding('utf8');
 	let data='';
