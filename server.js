@@ -34,7 +34,7 @@ console.log(req.params.grant_type);
 	htts.post(`https://api.sciener.cn${req.url}`,{
 		client_id: req.params.client_id,
 		client_secret: req.params.client_secret,
-		grant_type: req.params.grant_type,
+		grant_type: 'password',
 
 		username: req.params.username, 
 		password: req.params.password,
