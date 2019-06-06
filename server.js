@@ -28,11 +28,11 @@ var params=function(req){
 req.params=params(req);
 
 console.log(req.params.username);
-console.log(req.params.password);
+console.log(req.params.grant_type);
   if(req.method==='POST'){
 	
 	htts.post(`https://api.sciener.cn${req.url}`,{
-		client_id: req.params.username,
+		client_id: req.params.client_id,
 		client_secret: req.params.client_secret,
 		grant_type: req.params.grant_type,
 
