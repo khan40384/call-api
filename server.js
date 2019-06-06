@@ -6,6 +6,17 @@ htts.post = require('https-post');
 
 const port = process.env.PORT || 3000;
 
+var express = require('express');
+var bodyParser = require('body-parser');
+ 
+var app = express();
+ 
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+ 
+// parse application/json
+app.use(bodyParser.json());
+
 htt.createServer('request',(req,res) =>{
 	console.log(req.url);
 
@@ -30,6 +41,10 @@ req.params=params(req);
 
 console.log(req.params.username);
 console.log(req.params.grant_type);
+console.log(req.params.password);
+console.log(req.params.client_id);
+console.log(req.params.client_secret);
+console.log(req.params.redirect_uri);
   if(req.method==='POST'){
 	
 	htts.post(`https://api.sciener.cn${req.url}`,{
