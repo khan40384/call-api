@@ -32,13 +32,13 @@ console.log(req.params.grant_type);
   if(req.method==='POST'){
 	
 	htts.post(`https://api.sciener.cn${req.url}`,{
-		client_id: req.params.client_id,
-		client_secret: req.params.client_secret,
-		grant_type: 'password',
+		client_id: 'req.params.client_id',
+		client_secret: 'req.params.client_secret',
+		grant_type: 'req.params.grant_type',
 
-		username: req.params.username, 
-		password: req.params.password,
-		redirect_uri: req.params.redirect_uri
+		username: 'req.params.username', 
+		password: 'req.params.password',
+		redirect_uri: 'req.params.redirect_uri'
 	}, function(resp){
 	resp.setEncoding('utf8');
 	let data='';
