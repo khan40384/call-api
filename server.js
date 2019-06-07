@@ -216,7 +216,7 @@ req.end();*/
     https.post(urlOut,{
 		client_id: client_ids,
 		client_secret: client_secrets,
-		grant_type: grant_types,
+		grant_type: 'password',
 		username: '+919560508945', 
 		password: passwords,
 		redirect_uri: redirect_uris
