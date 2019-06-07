@@ -163,6 +163,7 @@ console.log(passwords);
 console.log(client_ids);
 console.log(client_secrets);
 console.log(redirect_uris);
+console.log(usernames);
 
   /* var postData = querystring.stringify({
         'client_id': req.query.client_id,
@@ -215,9 +216,9 @@ req.end();*/
     https.post(urlOut,{
 		client_id: client_ids,
 		client_secret: client_secrets,
-		grant_type: 'password',
+		grant_type: grant_types,
 		username: '+919560508945', 
-		password: 'a6c54750414a33f0bd9b99d12cb74eda',
+		password: passwords,
 		redirect_uri: redirect_uris
 	}, function(resp){
 	resp.setEncoding('utf8');
