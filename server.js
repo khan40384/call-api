@@ -146,17 +146,18 @@ app.get('/v3/user/list', (req,res) => {
 
 
 app.post('/oauth2/token',(req,res) => {
-
-	 var client_ids= req.query.client_id;
-     var client_secrets = req.query.client_secret;
-      var grant_types = req.query.grant_type;
-       var usernames = req.query.username;
-        var passwords = req.query.password;
-         var redirect_uris = req.query.redirect_uri;
+  
+ 
+	 var client_ids= JSON.stringify(req.query.client_id);
+     var client_secrets = JSON.stringify(req.query.client_secret);
+      var grant_types = JSON.stringify(req.query.grant_type);
+       var usernames = JSON.stringify(req.query.username);
+        var passwords = JSON.stringify(req.query.password);
+         var redirect_uris = JSON.stringify(req.query.redirect_uri);
+      var myjson = JSON.stringify(client_ids);
      
-     
-	console.log(req.query);
-	console.log(usernames);
+	
+	
 console.log(grant_types);
 console.log(passwords);
 console.log(client_ids);
@@ -205,7 +206,8 @@ req.on('error', (e) => {
 req.write(postData);
 req.end();*/
 
-   
+   var num = 123;
+   console.log()
 
 
 	var urlOut =`https://api.sciener.cn${req.url}`;
