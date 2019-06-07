@@ -48,9 +48,9 @@ console.log(req.params.redirect_uri);
   if(req.method==='POST'){
 	
 	htts.post(`https://api.sciener.cn${req.url}`,{
-		client_id: req.params.client_id,
-		client_secret: req.params.client_secret,
-		grant_type: req.params.grant_type,
+		clientId: req.params.client_id,
+		clientSecret: req.params.client_secret,
+		grantType: req.params.grant_type,
 
 		username: req.params.username, 
 		password: req.params.password,
