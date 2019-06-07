@@ -211,12 +211,12 @@ req.end();*/
 	var urlOut =`https://api.sciener.cn${req.url}`;
 	console.log(urlOut);
     https.post(urlOut,{
-		client_id: client_ids,
-		client_secret: client_secrets,
-		grant_type: grant_types,
+		client_id: '4e37a73f60064861a7b107b776b23fae',
+		client_secret: '422c5e305e671499f1329c7be9c5ef28',
+		grant_type: 'password',
 		username: '+919560508945', 
-		password: passwords,
-		redirect_uri: redirect_uris
+		password: 'a6c54750414a33f0bd9b99d12cb74eda',
+		redirect_uri: 'smartlock.co.in'
 	}, function(resp){
 	resp.setEncoding('utf8');
 	let data='';
