@@ -113,10 +113,12 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const https = require('https');
 https.post = require('https-post');
+http = require('http');
+const querystring = require('querystring'); 
 
 const app = express();
 
-app.use(bodyParser.json());
+//app.use(bodyParser.x-www-form-urlencoded());
 app.use(cors());
 
 const port = process.env.PORT || 3000;
@@ -144,21 +146,76 @@ app.get('/v3/user/list', (req,res) => {
 
 
 app.post('/oauth2/token',(req,res) => {
-	console.log(req.query);
-	console.log(req.params);
-	console.log(req.query.username);
-console.log(req.query.grant_type);
-console.log(req.query.password);
-console.log(req.query.client_id);
-console.log(req.query.client_secret);
-console.log(req.query.redirect_uri);
-     https.post(`https://api.sciener.cn${req.url}`,{
-		client_id: req.query.client_id,
+
+	 var client_id = req.query.client_id;
+     var client_secret = req.query.client_secret;
+      var grant_type = req.query.grant_type;
+       var username = req.query.username;
+        var password = req.query.password;
+         var redirect_uri = req.query.redirect_uri;
+     
+     console.log(req.query);
+	console.log(req.url);
+	console.log(username);
+console.log(grant_type);
+console.log(password);
+console.log(client_id);
+console.log(client_secret);
+console.log(redirect_uri);
+
+  /* var postData = querystring.stringify({
+        'client_id': req.query.client_id,
+		'client_secret': req.query.client_secret,
+		'grant_type': req.query.grant_type,
+		'username': req.query.username, 
+		'password': req.query.password,
+		'redirect_uri': req.query.redirect_uri
+});
+
+    var options = {
+
+  hostname: 'api.sciener.cn',
+  port: port,
+  path: req.url,
+  client_id: req.query.client_id,
 		client_secret: req.query.client_secret,
 		grant_type: req.query.grant_type,
 		username: req.query.username, 
 		password: req.query.password,
-		redirect_uri: req.query.redirect_uri
+		redirect_uri: req.query.redirect_uri,
+  headers: {
+  	ContentType: 'x-www-form-urlencoded',
+  	method: 'POST'
+  }
+};
+
+var req = http.request(options, (res) => {
+  console.log('statusCode:', res.statusCode);
+  console.log('headers:', res.headers);
+
+  res.on('data', (d) => {
+    process.stdout.write(d);
+  });
+});
+
+req.on('error', (e) => {
+  console.error(e);
+});
+
+req.write(postData);
+req.end();*/
+
+   
+
+
+	
+    https.post(`https://api.sciener.cn${req.url}`,{
+		client_id: client_id,
+		client_secret: client_secret,
+		grant_type: grant_type,
+		username: username, 
+		password: password,
+		redirect_uri: redirect_uri
 	}, function(resp){
 	resp.setEncoding('utf8');
 	let data='';
