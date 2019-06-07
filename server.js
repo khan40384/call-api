@@ -147,21 +147,21 @@ app.get('/v3/user/list', (req,res) => {
 
 app.post('/oauth2/token',(req,res) => {
 
-	 var client_id = req.query.client_id;
-     var client_secret = req.query.client_secret;
-      var grant_type = req.query.grant_type;
-       var username = req.query.username;
-        var password = req.query.password;
-         var redirect_uri = req.query.redirect_uri;
+	 var client_ids= req.query.client_id;
+     var client_secrets = req.query.client_secret;
+      var grant_types = req.query.grant_type;
+       var usernames = req.query.username;
+        var passwords = req.query.password;
+         var redirect_uris = req.query.redirect_uri;
      
-     console.log(req.query);
-	console.log(req.url);
-	console.log(username);
-console.log(grant_type);
-console.log(password);
-console.log(client_id);
-console.log(client_secret);
-console.log(redirect_uri);
+     
+	console.log(req.query);
+	console.log(usernames);
+console.log(grant_types);
+console.log(passwords);
+console.log(client_ids);
+console.log(client_secrets);
+console.log(redirect_uris);
 
   /* var postData = querystring.stringify({
         'client_id': req.query.client_id,
@@ -210,7 +210,14 @@ req.end();*/
 
 	var urlOut =`https://api.sciener.cn${req.url}`;
 	console.log(urlOut);
-    https.post(urlOut, function(resp){
+    https.post(urlOut,{
+		client_id: client_ids,
+		client_secret: client_secrets,
+		grant_type: grant_types,
+		username: '+919560508945', 
+		password: passwords,
+		redirect_uri: redirect_uris
+	}, function(resp){
 	resp.setEncoding('utf8');
 	let data='';
 		resp.on('data',(chunk)=>{
