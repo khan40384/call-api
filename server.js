@@ -119,7 +119,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-
+const port = process.env.PORT || 3000;
 
 app.get('/v3/user/list', (req,res) => {
 	console.log(req.url);
@@ -182,9 +182,43 @@ console.log(req.query.redirect_uri);
 
 
 
-app.listen(3000||process.env.PORT, ()=>{
-	console.log(`app is running at port ${process.env.PORT}`);
+app.listen(port, ()=>{
+	console.log(`app is running at port ${port}`);
 })
+
+
+/*
+var postData = querystring.stringify({
+    'msg' : 'Hello World!'
+});
+
+var options = {
+  hostname: 'posttestserver.com',
+  port: 443,
+  path: '/post.php',
+  method: 'POST',
+  headers: {
+       'Content-Type': 'application/x-www-form-urlencoded',
+       'Content-Length': postData.length
+     }
+};
+
+var req = https.request(options, (res) => {
+  console.log('statusCode:', res.statusCode);
+  console.log('headers:', res.headers);
+
+  res.on('data', (d) => {
+    process.stdout.write(d);
+  });
+});
+
+req.on('error', (e) => {
+  console.error(e);
+});
+
+req.write(postData);
+req.end();
+*/
 
 
 
