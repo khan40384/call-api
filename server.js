@@ -208,8 +208,9 @@ req.end();*/
    
 
 
-	
-    https.post(`https://api.sciener.cn${req.url}`,{
+	var urlOut ='https://api.sciener.cn/oauth2/token';
+	console.log(urlOut);
+    https.post(urlOut,{
 		client_id: client_id,
 		client_secret: client_secret,
 		grant_type: grant_type,
