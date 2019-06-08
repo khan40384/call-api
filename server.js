@@ -148,13 +148,13 @@ app.get('/v3/user/list', (req,res) => {
 app.post('/oauth2/token',(req,res) => {
   
  
-	 var client_ids= JSON.stringify(req.query.client_id);
-     var client_secrets = JSON.stringify(req.query.client_secret);
-      var grant_types = JSON.stringify(req.query.grant_type);
-       var usernames = JSON.stringify(req.query.username);
-        var passwords = JSON.stringify(req.query.password);
-         var redirect_uris = JSON.stringify(req.query.redirect_uri);
-      var myjson = JSON.stringify(client_ids);
+	 let client_ids= JSON.stringify(req.query.client_id);
+     let client_secrets = JSON.stringify(req.query.client_secret);
+      let grant_types = JSON.stringify(req.query.grant_type);
+       let usernames = JSON.stringify(req.query.username);
+        let passwords = JSON.stringify(req.query.password);
+         let redirect_uris = JSON.stringify(req.query.redirect_uri);
+      let myjson = JSON.stringify(client_ids);
      
 	
 	
@@ -165,33 +165,29 @@ console.log(client_secrets);
 console.log(redirect_uris);
 console.log(usernames);
 
-  /* var postData = querystring.stringify({
-        'client_id': req.query.client_id,
-		'client_secret': req.query.client_secret,
-		'grant_type': req.query.grant_type,
-		'username': req.query.username, 
-		'password': req.query.password,
-		'redirect_uri': req.query.redirect_uri
-});
+  /* var postData = {
+        client_ids: req.query.client_id,
+		client_secrets: req.query.client_secret,
+		grant_types: req.query.grant_type,
+		usernames: req.query.username, 
+		passwords: req.query.password,
+		redirect_uris: req.query.redirect_uri
+};
 
     var options = {
 
   hostname: 'api.sciener.cn',
   port: port,
   path: req.url,
-  client_id: req.query.client_id,
-		client_secret: req.query.client_secret,
-		grant_type: req.query.grant_type,
-		username: req.query.username, 
-		password: req.query.password,
-		redirect_uri: req.query.redirect_uri,
+  method: 'POST',
   headers: {
-  	ContentType: 'x-www-form-urlencoded',
-  	method: 'POST'
+  	'Content-Type': 'application/x-www-form-urlencoded',
+  	'Content-Length': postData.length
+  	
   }
 };
 
-var req = http.request(options, (res) => {
+var req = https .request(options, (res) => {
   console.log('statusCode:', res.statusCode);
   console.log('headers:', res.headers);
 
@@ -207,7 +203,7 @@ req.on('error', (e) => {
 req.write(postData);
 req.end();*/
 
-   var num = 123;
+   
    console.log()
 
 
@@ -216,7 +212,7 @@ req.end();*/
     https.post(urlOut,{
 		client_id: client_ids,
 		client_secret: client_secrets,
-		grant_type: 'password',
+		grant_type: grant_types,
 		username: usernames, 
 		password: passwords,
 		redirect_uri: redirect_uris
