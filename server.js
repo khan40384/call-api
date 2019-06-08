@@ -170,7 +170,7 @@ app.post('/oauth2/token',(req,res) => {
 console.log(grant_types);
 console.log(passwords);
 console.log(client_ids);
-console.log(client_secrets);
+console.log(client_secrets); 
 console.log(redirect_uris);
 console.log(usernames);
 
@@ -178,7 +178,7 @@ console.log(usernames);
 
 console.log(querystring.stringify(req.query));
 
- /*
+ 
 var urlOut =`https://api.sciener.cn${req.url}`;
 	console.log(urlOut);
 request.post(urlOut, querystring.stringify(req.query), (error, res, body) => {
@@ -188,7 +188,7 @@ request.post(urlOut, querystring.stringify(req.query), (error, res, body) => {
   }
   console.log(`statusCode: ${res.statusCode}`)
   console.log(body)
-})*/
+})
 /* var postData = querystring.stringify({
         client_ids: req.query.client_id,
 		client_secrets: req.query.client_secret,
@@ -239,7 +239,7 @@ req.end();*/
    
  
 
-
+/*
 	var urlOut =`https://api.sciener.cn${req.url}`;
 	console.log(urlOut);
     https.post(urlOut,{
@@ -266,7 +266,7 @@ req.end();*/
 		res.write(err.message);
 		res.end();
 	});
-
+*/
 })
 
 
