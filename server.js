@@ -210,11 +210,12 @@ req.end();*/
 var urlOut =`https://api.sciener.cn${req.url}`;
 	console.log(urlOut);
 request.post(urlOut, {
- client_id: client_ids,
+ 
+		form: {username: usernames, 
+			client_id: client_ids,
 		client_secret: client_secrets,
 		grant_type: grant_types,
 		redirect_uri: redirect_uris,
-		form: {username: usernames, 
 		password: passwords}
 		
 		
