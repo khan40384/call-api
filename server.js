@@ -109,7 +109,7 @@ console.log(`Listening on port ${port}...`);
 
 
 const express = require('express');
-const bodyParser = require('body-parser');
+
 const cors = require('cors');
 const https = require('https');
 https.post = require('https-post');
@@ -117,10 +117,13 @@ http = require('http');
 const querystring = require('querystring'); 
 const request = require('request');
 
+
 const app = express();
 
-//app.use(bodyParser.x-www-form-urlencoded());
+
 app.use(cors());
+
+
 
 const port = process.env.PORT || 3000;
 
@@ -148,17 +151,15 @@ app.get('/v3/user/list', (req,res) => {
 
 app.post('/oauth2/token',(req,res) => {
   
- 
-	 var client_ids= JSON.stringify(req.query.client_id);
-     var client_secrets = JSON.stringify(req.query.client_secret);
-      var grant_types = JSON.stringify(req.query.grant_type);
-       var usernames = JSON.stringify(req.query.username);
-        var passwords = JSON.stringify(req.query.password);
-         var redirect_uris = JSON.stringify(req.query.redirect_uri);
-      var myjson = JSON.stringify(client_ids);
-     
-	
-	
+    console.log(req.query);
+  
+	var client_ids= req.query.client_id;
+    var client_secrets = req.query.client_secret;
+    var grant_types = req.query.grant_type;
+    var usernames = req.query.username;
+    var passwords = req.query.password;
+    var redirect_uris = req.query.redirect_uri;
+ 	
 console.log(grant_types);
 console.log(passwords);
 console.log(client_ids);
@@ -166,7 +167,21 @@ console.log(client_secrets);
 console.log(redirect_uris);
 console.log(usernames);
 
- /* var postData = JSON.stringify({
+
+
+ 
+var urlOut =`https://api.sciener.cn${req.url}`;
+	console.log(urlOut);
+request.post(urlOut, (error, res, body) => {
+  if (error) {
+    console.error(error)
+    return
+  }
+  console.log(`statusCode: ${res.statusCode}`)
+  console.log(body)
+})
+
+/* var postData = querystring.stringify({
         client_ids: req.query.client_id,
 		client_secrets: req.query.client_secret,
 		grant_types: req.query.grant_type,
@@ -175,7 +190,11 @@ console.log(usernames);
 		redirect_uris: req.query.redirect_uri
 });
 
+
+
 console.log(postData.length);
+
+
 
     var options = {
 
@@ -186,9 +205,10 @@ console.log(postData.length);
   headers: {
   	'Content-Type': 'application/x-www-form-urlencoded',
   	'Content-Length': postData.length
-  	
   }
 };
+
+
 
 var req = https.request(options, (res) => {
   console.log('statusCode:', res.statusCode);
@@ -207,26 +227,6 @@ req.write(postData);
 req.end();*/
 
 
-var urlOut =`https://api.sciener.cn${req.url}`;
-	console.log(urlOut);
-request.post(urlOut, {
- 
-		form: {username: usernames, 
-			client_id: client_ids,
-		client_secret: client_secrets,
-		grant_type: grant_types,
-		redirect_uri: redirect_uris,
-		password: passwords}
-		
-		
-}, (error, res, body) => {
-  if (error) {
-    console.error(error)
-    return
-  }
-  console.log(`statusCode: ${res.statusCode}`)
-  console.log(body)
-})
 
    
  
