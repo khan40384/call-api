@@ -243,7 +243,7 @@ req.end();*/
 	var urlOut =`https://api.sciener.cn${req.url}`;
 	console.log(urlOut);
     https.post(urlOut,{
-		client_id: encodeURI(client_ids),
+		client_id: querystring.stringify(client_ids),
 		client_secret: encodeURI(client_secrets),
 		grant_type: encodeURI(grant_types),
 		username: encodeURI(usernames), 
