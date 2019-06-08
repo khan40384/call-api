@@ -112,13 +112,20 @@ const express = require('express');
 
 const cors = require('cors');
 const https = require('https');
-https.post = require('https-post');
-http = require('http');
+ https.post = require('https-post');
+const http = require('http');
+const bodyParser = require('body-parser');
+const axios = require('axios');
 const querystring = require('querystring'); 
 const request = require('request');
 
 
 const app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(express.static('public'));
 
 
 app.use(cors());
@@ -169,18 +176,19 @@ console.log(usernames);
 
 
 
- 
+console.log(querystring.stringify(req.query));
+
+ /*
 var urlOut =`https://api.sciener.cn${req.url}`;
 	console.log(urlOut);
-request.post(urlOut, (error, res, body) => {
+request.post(urlOut, querystring.stringify(req.query), (error, res, body) => {
   if (error) {
     console.error(error)
     return
   }
   console.log(`statusCode: ${res.statusCode}`)
   console.log(body)
-})
-
+})*/
 /* var postData = querystring.stringify({
         client_ids: req.query.client_id,
 		client_secrets: req.query.client_secret,
@@ -232,16 +240,9 @@ req.end();*/
  
 
 
-	/*var urlOut =`https://api.sciener.cn${req.url}`;
+	var urlOut =`https://api.sciener.cn${req.url}`;
 	console.log(urlOut);
-    https.post(urlOut,{
-		client_id: client_ids,
-		client_secret: client_secrets,
-		grant_type: grant_types,
-		username: usernames, 
-		password: passwords,
-		redirect_uri: redirect_uris
-	}, function(resp){
+    https.post(urlOut, querystring.stringify(req.query), function(resp){
 	resp.setEncoding('utf8');
 	let data='';
 		resp.on('data',(chunk)=>{
@@ -257,7 +258,7 @@ req.end();*/
 		console.log("error:" + err.message);
 		res.write(err.message);
 		res.end();
-	});*/
+	});
 
 })
 
